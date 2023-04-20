@@ -994,7 +994,9 @@ function library:CreateWindow(args)
                         Save = args.Save,
                         Type = "Textbox",
                         Set = function(val)
-                            UpdateBox.Set(val)
+                            spawn(function()
+								UpdateBox.Set(val)
+							end)
                         end
                     }
                 end)
@@ -1254,14 +1256,17 @@ function library:CreateWindow(args)
                     if bool == true then
                         f = true
                         TS:Create(Dot,TweenInfo.new(.1),{BackgroundTransparency=0}):Play()
+						spawn(function()
+							library.Flags[args.Flag].Value = true
+						end)
                         args.Callback(true)
                     elseif bool == false then
                         f = false
                         TS:Create(Dot,TweenInfo.new(.1),{BackgroundTransparency=1}):Play()
+						spawn(function()
+							library.Flags[args.Flag].Value = false
+						end)
                         args.Callback(false)
-                    end
-                    if library.Flags[args.Flag] then
-                        library.Flags[args.Flag].Value = bool 
                     end
                 end
                 pcall(function()
