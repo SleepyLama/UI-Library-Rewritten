@@ -994,7 +994,7 @@ function library:CreateWindow(args)
                         Save = args.Save,
                         Type = "Textbox",
                         Set = function(val)
-                            UpdateBox:Set(val)
+                            UpdateBox.Set(val)
                         end
                     }
                 end)
